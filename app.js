@@ -17,6 +17,34 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.car-type-cards div').forEach(function(el) {
         el.style.backgroundColor = randomColor();
     });
+    document.querySelectorAll('.header div').forEach(function(el) {
+        el.style.backgroundColor = randomColor();
+    });
+    
+    // Car type box click handler - changes content box background color
+    const carTypeBoxes = document.querySelectorAll('.header div');
+    const contentBox = document.querySelector('.content-box');
+    
+    if (contentBox) {
+        carTypeBoxes.forEach(box => {
+            box.addEventListener('click', function() {
+                // Get the background color of the clicked box
+                const bgColor = window.getComputedStyle(this).backgroundColor;
+                
+                // Apply it to the content box with smooth transition
+                contentBox.style.backgroundColor = bgColor;
+                
+                // Remove active class from all boxes
+                carTypeBoxes.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked box
+                this.classList.add('active');
+                
+                // Log the selected car type
+                console.log('Selected car type:', this.textContent);
+            });
+        });
+    }
     
     const formBox = document.querySelector('.form-box');
     
