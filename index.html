@@ -1,60 +1,65 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <title>Hermez.com</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>HERMEZ Garage</title>
+    <link rel="stylesheet" href="index.css">
 </head>
-    <body class="car-type-body">
-        <nav class="nav-bar">
-            <ul class="nav-list">
-                <li>
-                    <img src="images/logo.png" alt="Hermez Logo" height="150" width="150">
-               </li>
-                <li>
-                    <img src="images/hermez.png" alt="Header" height="100" width=auto>
-                    <br>
-                    !! 𝓦𝓔 𝓦𝓘𝓛𝓛 𝓗𝓔𝓛𝓟 𝓨𝓞𝓤 𝓕𝓘𝓝𝓓 𝓣𝓗𝓔 𝓟𝓡𝓘𝓓𝓔 𝓕𝓞𝓡 𝓨𝓞𝓤𝓡 𝓖𝓐𝓡𝓐𝓖𝓔 !!
-                </li>
-            </ul>
-        </nav>
-        <div class="car-type-cards">
+
+<body>
+    <header class="hermez-header" id="heroHeader">
+        <div class="hermez-logo-container">
+            <img src="./images/logo.png" alt="Hermez Logo" />
             <div>
-                <image src="images/suv.png" alt="SUV Image" height="150" width="150">
-                <h1>SUV</h1>
-            </div>
-            <div>
-                <image src="images/sedan.png" alt="Sedan Image" height="150" width="150">
-                <h1>Sedan</h1>
-            </div>
-            <div>
-                <image src="images/hatchback.png" alt="Hatchback Image" height="150" width="150">
-                <h1>Hatchback</h1>
-            </div>
-            <div>
-                <image src="images/convertible.png" alt="Convertible Image" height="150" width="150">
-                <h1>Convertible</h1>
-            </div>
-            <div>
-                <image src="images/minivan.png" alt="Minivan Image" height="150" width="150">
-                <h1>Van</h1>
-            </div>
-            <div>
-                <image src="images/crossover.png" alt="Crossover Image" height="150" width="150">
-                <h1>Crossover</h1>
-            </div>
-            <div>
-                <image src="images/coupe.png" alt="Coupe Image" height="150" width="150">
-                <h1>Coupe</h1>
-            </div>
-            <div>
-                <image src="images/station-wagon.png" alt="Station Wagon Image" height="150" width="150">
-                <h1>Wagon</h1>
-            </div>
-            <div>
-                <image src="images/pickup-truck.png" alt="Pickup Truck Image" height="150" width="150">
-                <h1>Pickups</h1>
+                <div class="hermez-title">HERMEZ</div>
+                <div class="hermez-domain">.COM</div>
             </div>
         </div>
-    </body>
+        <div class="hermez-tagline">!! WE WILL HELP YOU FIND THE PRIDE FOR YOUR GARAGE !!</div>
+    </header>
+
+    <main>
+        <section class="car-grid">
+            <div class="car"><img src="./images/suv.png" width="150"></div>
+            <div class="car"><img src="./images/sedan.png" width="150"></div>
+            <div class="car"><img src="./images/hatchback.png" width="150"></div>
+            <div class="car"><img src="./images/station-wagon.png" width="150"></div>
+            <div class="car"><img src="./images/minivan.png" width="150"></div>
+            <div class="car"><img src="./images/crossover.png" width="150"></div>
+            <div class="car"><img src="./images/coupe.png" width="150"></div>
+            <div class="car"><img src="./images/convertible.png" width="150"></div>
+            <div class="car"><img src="./images/pickup-truck.png" width="150"></div>
+        </section>
+    </main>
+
+    <script>
+        const header = document.getElementById('heroHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        function colourChecker(r, g, b) {
+            if (r * 0.299 + g * 0.587 + b * 0.114 < 127) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        function randomColor() {
+            var r = Math.floor(Math.random() * 255);
+            var g = Math.floor(Math.random() * 255);
+            var b = Math.floor(Math.random() * 255);
+            return colourChecker(r, g, b) ? 'rgb(' + r + ',' + g + ',' + b + ')' : randomColor();
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.car').forEach(function (el) {
+                el.style.backgroundColor = randomColor();
+            });
+        }); 
+    </script>
+</body>
+
 </html>
