@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.car-type-body{
+.car-type-body {
   background: rgba(21, 31, 40, 0.81);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -16,7 +16,7 @@
   flex-direction: column;
 }
 
-.nav-bar{
+.nav-bar {
   display: flex;
   position: sticky;
   top: 0;
@@ -57,7 +57,7 @@
   align-items: flex-end;
 }
 
-.car-type-cards{
+.car-type-cards {
   display: grid;
   justify-content: center;
   align-items: center;
@@ -93,7 +93,29 @@
   }
 }
 
-.form-box{
+
+#car-listings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.car-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  width: 230px;
+  text-align: center;
+}
+
+.car-card img {
+  max-width: 200px;
+  border-radius: 4px;
+}
+
+.form-box {
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -113,7 +135,7 @@
   margin-top: 10px;
 }
 
-.content-box{
+.content-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,7 +147,7 @@
   transition: background-color 0.5s ease;
 }
 
-.main-box{
+.main-box {
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -139,44 +161,105 @@
   width: 100%;
 }
 
-.header{
+.header {
   display: grid;
   justify-content: baseline;
   gap: 4px;
-  grid-template-columns: repeat(9,1fr);
+  grid-template-columns: repeat(9, 1fr);
   margin: 0;
   padding: 0px;
 }
 
-.header div{
+.content-box {
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+#car-listings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 20px;
+  margin: 0;
+}
+
+.main-box {
   display: flex;
-  height: 50px;
-  width: 99px;
-  background-color: yellow;
-  justify-content: center;
-  align-items: center;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.form-box {
+  flex-shrink: 0;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+/* Individual car card */
+.car-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+}
+
+.car-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.car-card img {
+  width: 165px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.car-card .car-name {
+  font-size: 18px;
   font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.car-card .car-model {
   font-size: 14px;
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  #car-listings {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  #car-listings {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.header div {
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.header div:hover{
+.header div:hover {
   transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header div.active {
-  transform: scale(1.08);
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  border: 3px solid #000;
-  font-weight: 900;
-}
-
-.header div.active {
-  transform: scale(1.08);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-  border: 3px solid #000;
+  border: 3px solid #222;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .slider-group {
@@ -203,7 +286,7 @@ input[type="range"] {
   transition: all 0.5s ease, transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-.input-group > label {
+.input-group>label {
   font-size: 18px;
   font-weight: 700;
   color: #fff;
@@ -233,7 +316,7 @@ input[type="range"] {
 .slider-group:hover,
 .input-group:hover {
   transform: translateX(5px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .form-box {
@@ -267,6 +350,7 @@ input[type="range"] {
     opacity: 0;
     transform: translateY(-20px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -277,6 +361,7 @@ input[type="range"] {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

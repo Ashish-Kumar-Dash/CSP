@@ -12,6 +12,25 @@ function randomColor() {
     var b = Math.floor(Math.random() * 255);
     return colourChecker(r, g, b) ? 'rgb(' + r + ',' + g + ',' + b + ')' : randomColor();
 }
+window.addEventListener('DOMContentLoaded', function () {
+    function getQueryParam(param) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+    var selectedType = getQueryParam('type');
+    if (selectedType) {
+        document.querySelectorAll('.header div').forEach(function (tab) {
+            tab.classList.remove('active');
+        });
+        var matched = Array.from(document.querySelectorAll('.header div')).find(
+            tab => tab.getAttribute('data-type') &&
+                tab.getAttribute('data-type').toLowerCase() === selectedType.toLowerCase()
+        );
+        if (matched) {
+            matched.classList.add('active');
+        }
+    }
+});
 
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.car-type-cards div').forEach(function (el) {
