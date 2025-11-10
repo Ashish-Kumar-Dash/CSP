@@ -67,8 +67,8 @@ body {
 }
 
 .hermez-logo-container img {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
     transition: all 0.3s ease;
 }
@@ -112,7 +112,7 @@ main {
     position: relative;
     z-index: 1;
     padding: 2rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
@@ -157,40 +157,67 @@ main {
     color: #ddd;
 }
 
+/* Updated 3x3 Grid with Larger Size */
 .car-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    padding: 1rem 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    padding: 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .car {
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 12px;
-    padding: 1.5rem;
+    border-radius: 16px;
+    padding: 2.5rem;
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .car:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
 }
 
 .car img {
-    width: 150px;
+    width: 220px;
     height: auto;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.car:hover img {
+    transform: scale(1.1);
 }
 
 .car h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #222;
     margin: 0;
+    font-weight: 600;
 }
 
+/* Tablet View */
+@media (max-width: 1024px) {
+    .car-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .car img {
+        width: 200px;
+    }
+}
+
+/* Mobile View */
 @media (max-width: 768px) {
     .hermez-title {
         font-size: 2rem;
@@ -202,8 +229,22 @@ main {
     }
 
     .car-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .car {
+        padding: 2rem;
+        min-height: 250px;
+    }
+
+    .car img {
+        width: 180px;
+    }
+
+    .car h2 {
+        font-size: 1.6rem;
     }
 
     .intro {
