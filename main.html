@@ -403,7 +403,6 @@
         let currentBodyType = 'SUV';
         let filterTimeout = null;
 
-        // Track which sliders have been modified by user
         const modifiedSliders = new Set();
 
         const fieldMapping = {
@@ -435,7 +434,6 @@
             'fuel_eff': 'fuel_efficiency_estimate'
         };
 
-        // Collect only ACTIVE filters (modified by user)
         function getCurrentFilters() {
             const filters = {
                 body_type: currentBodyType,
@@ -444,7 +442,6 @@
                 radios: {}
             };
 
-            // Only include sliders that user has actually moved
             for (const [htmlId, dbColumn] of Object.entries(fieldMapping)) {
                 if (modifiedSliders.has(htmlId)) {
                     const slider = document.getElementById(htmlId);
@@ -454,7 +451,6 @@
                 }
             }
 
-            // Checkboxes (only checked ones)
             const checkboxGroups = {};
             document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
                 const name = cb.name;
@@ -464,7 +460,6 @@
             });
             filters.checkboxes = checkboxGroups;
 
-            // Radio buttons (only checked ones)
             document.querySelectorAll('input[type="radio"]:checked').forEach(radio => {
                 const name = radio.name;
                 const value = radio.nextSibling ? radio.nextSibling.textContent.trim() : radio.value;
@@ -474,7 +469,6 @@
             return filters;
         }
 
-        // Build Supabase query
         async function fetchFilteredCars() {
             const filters = getCurrentFilters();
             console.log('Applying filters:', filters);
@@ -484,12 +478,10 @@
                 .select('*')
                 .eq('body_type', filters.body_type);
 
-            // Apply range filters (only modified sliders)
             for (const [dbColumn, minValue] of Object.entries(filters.ranges)) {
                 query = query.gte(dbColumn, minValue);
             }
 
-            // Apply radio button filters
             const radioMapping = {
                 'fuel_type': 'fuel_type',
                 'aspiration': 'aspiration',
@@ -503,7 +495,6 @@
             for (const [htmlName, dbColumn] of Object.entries(radioMapping)) {
                 if (filters.radios[htmlName]) {
                     let dbValue = filters.radios[htmlName];
-                    // Map display text to database values
                     if (htmlName === 'fuel_type') {
                         dbValue = dbValue === 'Diesel' ? 'Diesel' : 'Gasoline';
                     } else if (htmlName === 'aspiration') {
@@ -519,7 +510,6 @@
                 }
             }
 
-            // Apply checkbox filters
             const checkboxMapping = {
                 'heated_seats': 'heated_seats',
                 'seat_material': 'seat_material',
@@ -598,7 +588,6 @@
 
         }
 
-        // Debounced filter update
         function triggerFilterUpdate() {
             clearTimeout(filterTimeout);
             filterTimeout = setTimeout(async () => {
@@ -607,9 +596,7 @@
             }, 300);
         }
 
-        // Setup event listeners
         function setupFilterListeners() {
-            // Range sliders - mark as modified when user changes them
             document.querySelectorAll('input[type="range"]').forEach(slider => {
                 slider.addEventListener('input', function () {
                     modifiedSliders.add(this.id);
@@ -617,18 +604,15 @@
                 });
             });
 
-            // Checkboxes
             document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
                 cb.addEventListener('change', triggerFilterUpdate);
             });
 
-            // Radio buttons
             document.querySelectorAll('input[type="radio"]').forEach(radio => {
                 radio.addEventListener('change', triggerFilterUpdate);
             });
         }
 
-        // Category navigation
         function setupCategoryNavigation() {
             document.querySelectorAll('.header div').forEach(tab => {
                 tab.addEventListener('click', function () {
@@ -659,7 +643,6 @@
             return params.get(param);
         }
 
-        // Initialize
         window.addEventListener('DOMContentLoaded', async function () {
             let selectedType = getQueryParam('type');
 
@@ -675,7 +658,6 @@
             setupCategoryNavigation();
             setupFilterListeners();
 
-            // Initial load - show ALL cars of selected body type (no filters)
             const cars = await fetchFilteredCars();
             displayCars(cars);
         });

@@ -8,13 +8,11 @@
 </head>
 
 <body>
-    <!-- Back button -->
     <div class="back-button" onclick="window.history.back()">
         ← Back to Listings
     </div>
 
     <div class="detail-container">
-        <!-- Left side - Car Image -->
         <div class="image-section">
             <img id="car-image" src="" alt="Car Image">
             <div class="car-title">
@@ -23,7 +21,6 @@
             </div>
         </div>
 
-        <!-- Right side - Specifications -->
         <div class="specs-section">
             <h2>Vehicle Specifications</h2>
 
@@ -261,17 +258,14 @@
                 return;
             }
 
-            // Set image
             document.getElementById('car-image').src = `data-images/${car.id}.png`;
             document.getElementById('car-image').onerror = function () {
                 this.src = 'images/placeholder-car.png';
             };
 
-            // Set title
             document.getElementById('car-name').textContent = car.make || 'Unknown Make';
             document.getElementById('car-model').textContent = car.model || 'Unknown Model';
 
-            // Populate all specs
             document.getElementById('year').textContent = car.year || '-';
             document.getElementById('price').textContent = car.price_usd ? `$${car.price_usd.toLocaleString()}` : '-';
             document.getElementById('body_type').textContent = car.body_type || '-';

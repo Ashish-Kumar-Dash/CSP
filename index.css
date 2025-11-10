@@ -1,4 +1,3 @@
-/* Reset default styles */
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +17,6 @@ body {
     position: relative;
 }
 
-/* Canvas layers - Fixed background */
 #backgroundCanvas,
 #starsCanvas,
 #milkyWayCanvas {
@@ -31,7 +29,6 @@ body {
     pointer-events: none;
 }
 
-/* Stacking order for canvases */
 #backgroundCanvas {
     z-index: -3;
 }
@@ -44,7 +41,6 @@ body {
     z-index: -1;
 }
 
-/* Header styles */
 .hermez-header {
     position: sticky;
     top: 0;
@@ -112,7 +108,6 @@ body {
     opacity: 0.8;
 }
 
-/* Main content */
 main {
     position: relative;
     z-index: 1;
@@ -121,7 +116,6 @@ main {
     margin: 0 auto;
 }
 
-/* Intro section */
 .intro {
     background: rgba(20, 20, 50, 0.85);
     backdrop-filter: blur(8px);
@@ -163,7 +157,6 @@ main {
     color: #ddd;
 }
 
-/* Car grid section */
 .car-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -198,7 +191,6 @@ main {
     margin: 0;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .hermez-title {
         font-size: 2rem;
