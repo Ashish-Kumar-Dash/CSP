@@ -39,8 +39,6 @@ We, at **Hermez.com** will help you to skip dealership hassles and buy your next
   - **JavaScript** (for any interactivity)
 - 🧱 **Back-end & Database:** Supabase
 ---
-## 📸 Snaps from Site
----
 ## 🛠️ Access Hermez
 On your favourite browser, open our elite site: `https://arpit-mohapatra007.github.io/CSP/`
 
